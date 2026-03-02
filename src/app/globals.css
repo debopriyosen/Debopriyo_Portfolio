@@ -7,3 +7,13 @@
     @apply bg-[#121212] text-white antialiased overflow-x-hidden;
   }
 }
+
+/* Hide default cursor only on devices with a real mouse pointer */
+@media (pointer: fine) {
+
+  *,
+  *::before,
+  *::after {
+    cursor: none !important;
+  }
+}

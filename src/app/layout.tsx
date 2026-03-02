@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import CustomCursor from "@/components/CustomCursor";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -18,6 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scrollbar-hide">
       <body className={`${inter.variable} font-sans`}>
+        <CustomCursor />
         <Navbar />
         {children}
       </body>

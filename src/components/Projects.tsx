@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import React, { useRef } from "react";
 
 export default function Projects() {
     const projects = [
@@ -22,27 +23,103 @@ export default function Projects() {
                 >
                     Selected Works
                 </motion.h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 px-0 md:px-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 px-0 md:px-4" style={{ perspective: "1000px" }}>
                     {projects.map((proj, i) => (
-                        <motion.div
-                            key={i}
-                            initial={{ opacity: 0, y: 40 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: i * 0.1 }}
-                            className="group relative h-[350px] md:h-[450px] rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl overflow-hidden hover:border-white/20 transition-all duration-700 cursor-pointer"
-                        >
-                            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/80 z-10" />
-                            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.08)_0%,transparent_70%)] transition-opacity duration-700 z-0" />
-
-                            <div className="absolute bottom-8 left-8 right-8 z-20 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                                <p className="text-sm font-medium tracking-widest text-gray-400 mb-3 uppercase">{proj.category}</p>
-                                <h4 className="text-3xl font-semibold text-white tracking-tight">{proj.title}</h4>
-                            </div>
-                        </motion.div>
+                        <ProjectCard key={i} project={proj} index={i} />
                     ))}
                 </div>
             </div>
         </div>
+    );
+}
+
+// Ensure the props interface matches the array objects
+interface ProjectData {
+    title: string;
+    category: string;
+}
+
+function ProjectCard({ project, index }: { project: ProjectData; index: number }) {
+    const cardRef = useRef<HTMLDivElement>(null);
+
+    // Track mouse position on the card
+    const rawX = useMotionValue(0.5); // 0 to 1
+    const rawY = useMotionValue(0.5); // 0 to 1
+
+    // Smooth out the movement with a spring
+    const springConfig = { damping: 20, stiffness: 200, mass: 1 };
+    const x = useSpring(rawX, springConfig);
+    const y = useSpring(rawY, springConfig);
+
+    // Transform mouse percentage (0-1) into rotation angles (-5deg to +5deg)
+    // Note: If mouse is at top (y=0), we want to tilt upwards (rotateX positive)
+    // If mouse is at left (x=0), we want to tilt leftwards (rotateY negative)
+    const rotateX = useTransform(y, [0, 1], [8, -8]);
+    const rotateY = useTransform(x, [0, 1], [-8, 8]);
+
+    // Move the subtle inner highlight based on the mouse
+    const glareX = useTransform(x, [0, 1], ["0%", "100%"]);
+    const glareY = useTransform(y, [0, 1], ["0%", "100%"]);
+    const opacity = useTransform(y, [0, 1], [0.1, 0.4]); // Glare gets brighter depending on angle
+
+    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (!cardRef.current) return;
+        const rect = cardRef.current.getBoundingClientRect();
+
+        // Calculate mouse position relative to card boundaries
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
+
+        // Normalize to strictly 0 -> 1
+        const pctX = Math.max(0, Math.min(1, mouseX / rect.width));
+        const pctY = Math.max(0, Math.min(1, mouseY / rect.height));
+
+        rawX.set(pctX);
+        rawY.set(pctY);
+    };
+
+    const handleMouseLeave = () => {
+        // Smoothly snap back to flat center on leave
+        rawX.set(0.5);
+        rawY.set(0.5);
+    };
+
+    return (
+        <motion.div
+            ref={cardRef}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: index * 0.1 }}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+            className="group relative h-[350px] md:h-[450px] rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl overflow-hidden cursor-pointer shadow-2xl"
+        >
+            {/* The standard gradient bg */}
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/80 z-10 pointer-events-none" />
+
+            {/* Dynamic Interactive Glare that follows the cursor */}
+            <motion.div
+                className="absolute inset-0 z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                style={{
+                    background: `radial-gradient(circle 300px at calc(${glareX}) calc(${glareY}), rgba(255,255,255,1) 0%, transparent 60%)`,
+                    opacity: opacity
+                }}
+            />
+
+            {/* Text Content - lifted up slightly in 3D space */}
+            <div
+                className="absolute bottom-8 left-8 right-8 z-20 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 will-change-transform"
+                style={{ transform: "translateZ(40px)" }} // Pushes text outwards in 3D
+            >
+                <p className="text-sm font-medium tracking-widest text-gray-400 mb-3 uppercase drop-shadow-md">
+                    {project.category}
+                </p>
+                <h4 className="text-3xl font-semibold text-white tracking-tight drop-shadow-md">
+                    {project.title}
+                </h4>
+            </div>
+        </motion.div>
     );
 }
