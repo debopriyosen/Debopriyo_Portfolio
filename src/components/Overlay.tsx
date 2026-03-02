@@ -26,10 +26,10 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
                 style={{ opacity: opacity1, y: y1 }}
                 className="absolute top-1/2 left-0 right-0 -translate-y-1/2 text-center px-4"
             >
-                <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-wide text-white drop-shadow-2xl">
+                <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black tracking-wide text-white drop-shadow-2xl">
                     Debopriyo Sen
                 </h1>
-                <p className="mt-8 text-xl md:text-2xl text-gray-300 font-medium tracking-widest drop-shadow-lg uppercase">
+                <p className="mt-4 sm:mt-8 text-base sm:text-lg md:text-2xl text-gray-300 font-medium tracking-widest drop-shadow-lg uppercase px-2">
                     Product & Experience Designer.
                 </p>
             </motion.div>
@@ -38,7 +38,7 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
                 style={{ opacity: opacity2, y: y2 }}
                 className="absolute top-1/2 left-[5%] md:left-[10%] -translate-y-1/2"
             >
-                <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-wide text-white drop-shadow-2xl max-w-[90vw] md:max-w-2xl leading-snug">
+                <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-wide text-white drop-shadow-2xl max-w-[90vw] md:max-w-2xl leading-snug">
                     I build digital <br /><span className="text-gray-400">experiences.</span>
                 </h2>
             </motion.div>
@@ -47,7 +47,7 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
                 style={{ opacity: opacity3, y: y3 }}
                 className="absolute top-1/2 right-[5%] md:right-[10%] -translate-y-1/2 text-right"
             >
-                <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-wide text-white drop-shadow-2xl max-w-[90vw] md:max-w-2xl leading-snug ml-auto">
+                <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-wide text-white drop-shadow-2xl max-w-[90vw] md:max-w-2xl leading-snug ml-auto">
                     Bridging design <br /><span className="text-gray-400">and engineering.</span>
                 </h2>
             </motion.div>

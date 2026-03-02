@@ -11,7 +11,7 @@ export default function Projects() {
     ];
 
     return (
-        <div id="projects-section" className="relative z-20 bg-[#121212] pt-24 pb-48 px-8 border-t border-white/5">
+        <div id="projects-section" className="relative z-20 bg-[#121212] pt-24 pb-48 px-4 md:px-8 border-t border-white/5">
             <div className="max-w-7xl mx-auto w-full">
                 <motion.h3
                     initial={{ opacity: 0, y: 20 }}
@@ -22,7 +22,7 @@ export default function Projects() {
                 >
                     Selected Works
                 </motion.h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 px-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 px-0 md:px-4">
                     {projects.map((proj, i) => (
                         <motion.div
                             key={i}

@@ -15,10 +15,10 @@ export default function ContactPage() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
                 >
-                    <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tight mb-2">
+                    <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-white tracking-tight mb-2">
                         Let&apos;s create something
                     </h1>
-                    <h2 className="text-5xl md:text-7xl font-bold text-gray-500 tracking-tight mb-12">
+                    <h2 className="text-4xl sm:text-5xl md:text-7xl font-bold text-gray-500 tracking-tight mb-12">
                         extraordinary.
                     </h2>
                 </motion.div>
@@ -38,7 +38,7 @@ export default function ContactPage() {
                         <p className="text-sm text-gray-500 uppercase tracking-widest mb-2 font-medium">Contact</p>
                         <a
                             href="mailto:debopriyosensupu@gmail.com"
-                            className="text-2xl md:text-4xl font-medium text-white hover:text-gray-300 transition-colors"
+                            className="text-lg sm:text-2xl md:text-4xl font-medium text-white hover:text-gray-300 transition-colors break-all"
                         >
                             debopriyosensupu@gmail.com
                         </a>
