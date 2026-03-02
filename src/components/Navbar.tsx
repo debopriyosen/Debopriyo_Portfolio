@@ -16,31 +16,33 @@ export default function Navbar() {
             </Link>
 
             <div className="flex gap-8 md:gap-12">
-                <button
-                    onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                <Link
+                    href="/"
                     className="text-white/80 hover:text-white text-sm font-medium tracking-wide transition-colors"
                 >
                     Home
-                </button>
-                <button
-                    onClick={() => {
-                        const projectsSection = document.getElementById("projects-section");
-                        if (projectsSection) {
-                            projectsSection.scrollIntoView({ behavior: "smooth" });
+                </Link>
+                <Link
+                    href="/#projects-section"
+                    onClick={(e) => {
+                        if (window.location.pathname === "/") {
+                            e.preventDefault();
+                            const projectsSection = document.getElementById("projects-section");
+                            if (projectsSection) {
+                                projectsSection.scrollIntoView({ behavior: "smooth" });
+                            }
                         }
                     }}
-                    className="text-white/80 hover:text-white text-sm font-medium tracking-wide transition-colors"
+                    className="text-white/80 hover:text-white text-sm font-medium tracking-wide transition-colors cursor-pointer"
                 >
                     Works
-                </button>
-                <button
-                    onClick={() => {
-                        window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
-                    }}
+                </Link>
+                <Link
+                    href="/contact"
                     className="text-white/80 hover:text-white text-sm font-medium tracking-wide transition-colors"
                 >
                     Contact
-                </button>
+                </Link>
             </div>
         </motion.nav>
     );
