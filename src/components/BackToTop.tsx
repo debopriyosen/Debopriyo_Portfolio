@@ -7,9 +7,9 @@ export default function BackToTop() {
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
-        // Show the button when scrolling down past 500px length
+        // Show the button when scrolling down past 300px length
         const toggleVisibility = () => {
-            if (window.scrollY > 500) {
+            if (window.scrollY > 300) {
                 setIsVisible(true);
             } else {
                 setIsVisible(false);
@@ -38,7 +38,7 @@ export default function BackToTop() {
                     exit={{ opacity: 0, scale: 0.5, y: 20 }}
                     transition={{ duration: 0.3 }}
                     onClick={scrollToTop}
-                    className="fixed bottom-8 right-8 z-[100] w-14 h-14 rounded-full bg-white text-black flex items-center justify-center mix-blend-difference cursor-pointer hover:scale-110 active:scale-95 transition-transform drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]"
+                    className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-[9999] w-12 h-12 md:w-14 md:h-14 rounded-full bg-white text-black flex items-center justify-center mix-blend-difference cursor-pointer hover:scale-110 active:scale-95 transition-transform drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]"
                     aria-label="Scroll back to top"
                 >
                     <svg

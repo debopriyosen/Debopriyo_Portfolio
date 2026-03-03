@@ -2,13 +2,16 @@
 
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import React, { useRef } from "react";
+import { useRouter } from "next/navigation";
+
+import Image from "next/image";
 
 export default function Projects() {
     const projects = [
-        { title: "E-Commerce Experience", category: "Web GL / React" },
-        { title: "Fintech Dashboard", category: "Next.js / Tailwind" },
-        { title: "Award Winning Portfolio", category: "Framer Motion" },
-        { title: "Interactive Campaign", category: "Three.js" },
+        { title: "Packaging Designs", category: "Branding / Design", slug: "packaging-designs", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&q=80&w=800" },
+        { title: "Fintech Dashboard", category: "Next.js / Tailwind", slug: "fintech-dashboard", image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800" },
+        { title: "Award Winning Portfolio", category: "Framer Motion", slug: "award-winning-portfolio", image: "https://images.unsplash.com/photo-1542382257-80dedb725088?auto=format&fit=crop&q=80&w=800" },
+        { title: "Interactive Campaign", category: "Three.js", slug: "interactive-campaign", image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800" },
     ];
 
     return (
@@ -37,10 +40,13 @@ export default function Projects() {
 interface ProjectData {
     title: string;
     category: string;
+    slug: string;
+    image: string;
 }
 
 function ProjectCard({ project, index }: { project: ProjectData; index: number }) {
     const cardRef = useRef<HTMLDivElement>(null);
+    const router = useRouter();
 
     // Track mouse position on the card
     const rawX = useMotionValue(0.5); // 0 to 1
@@ -93,11 +99,22 @@ function ProjectCard({ project, index }: { project: ProjectData; index: number }
             transition={{ duration: 0.6, delay: index * 0.1 }}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
+            onClick={() => router.push(`/projects/${project.slug}`)}
             style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
             className="group relative h-[350px] md:h-[450px] rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl overflow-hidden cursor-pointer shadow-2xl"
         >
-            {/* The standard gradient bg */}
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/80 z-10 pointer-events-none" />
+            {/* Background Image */}
+            <Image
+                src={project.image}
+                alt={project.title}
+                fill
+                unoptimized
+                className="object-cover transition-transform duration-700 group-hover:scale-110"
+                sizes="(max-width: 768px) 100vw, 50vw"
+            />
+
+            {/* The standard gradient bg to ensure text legibility */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-10 pointer-events-none" />
 
             {/* Dynamic Interactive Glare that follows the cursor */}
             <motion.div
