@@ -19,7 +19,7 @@ export default function ProjectsGalleryPage() {
     const allProjects = [
         { title: "Packaging Designs", category: "Branding / Design", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&q=80&w=800", slug: "packaging-designs" },
         { title: "Fintech Dashboard", category: "Next.js / Tailwind", image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800", slug: "fintech-dashboard" },
-        { title: "Eco Packaging", category: "Sustainable Design", image: "https://images.unsplash.com/photo-1558655146-d49348e9ae97?auto=format&fit=crop&q=80&w=800", slug: "packaging-designs" },
+        { title: "Eco Packaging", category: "Sustainable Design", image: "/images/projects/packaging/project1/1.jpg", slug: "packaging-designs" },
         { title: "Award Winning Portfolio", category: "Framer Motion", image: "https://images.unsplash.com/photo-1542382257-80dedb725088?auto=format&fit=crop&q=80&w=800", slug: "award-winning-portfolio" },
         { title: "Interactive Campaign", category: "Three.js", image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800", slug: "interactive-campaign" },
         { title: "Minimalist Brand", category: "Identity", image: "https://images.unsplash.com/photo-1605204481358-fc29906666eb?auto=format&fit=crop&q=80&w=800", slug: "packaging-designs" },

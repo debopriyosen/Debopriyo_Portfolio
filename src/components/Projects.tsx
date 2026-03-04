@@ -8,7 +8,7 @@ import Image from "next/image";
 
 export default function Projects() {
     const projects = [
-        { title: "Packaging Designs", category: "Branding / Design", slug: "packaging-designs", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&q=80&w=800" },
+        { title: "Packaging Designs", category: "Branding / Design", slug: "packaging-designs", image: "/images/projects/packaging/project1/1.jpg" },
         { title: "Fintech Dashboard", category: "Next.js / Tailwind", slug: "fintech-dashboard", image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800" },
         { title: "Award Winning Portfolio", category: "Framer Motion", slug: "award-winning-portfolio", image: "https://images.unsplash.com/photo-1542382257-80dedb725088?auto=format&fit=crop&q=80&w=800" },
         { title: "Interactive Campaign", category: "Three.js", slug: "interactive-campaign", image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800" },
