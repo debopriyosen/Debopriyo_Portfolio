@@ -28,9 +28,9 @@ export const projectDatabase: Record<string, ProjectCategory> = {
         subProjects: [
             {
                 id: "project-1",
-                title: "Project 1",
+                title: "Ciao Pizzeria | Illustrated Packaging System",
                 thumbnail: "/images/projects/packaging/project1/1.jpg",
-                description: "A showcase of premium packaging design, featuring a series of detailed visualizations from 1 to 19.",
+                description: "Conceptualized and executed a cohesive packaging ecosystem for an Italian pizzeria, developing custom illustrations and scalable visual assets across pizza boxes, coffee cups, containers, and brand collaterals to strengthen shelf impact and brand recall.",
                 images: [
                     { url: "/images/projects/packaging/project1/1.jpg", span: "col-span-2" },
                     { url: "/images/projects/packaging/project1/2.jpg", span: "col-span-1" },
