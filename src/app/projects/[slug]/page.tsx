@@ -5,64 +5,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
 import { notFound } from "next/navigation";
+import { projectDatabase } from "../../../lib/projectData";
 
-// Define the structure for project instances
-interface ProjectImage {
-    url: string;
-    span?: "col-span-1" | "col-span-2";
-}
-
-interface ProjectCategory {
-    title: string;
-    category: string;
-    description: string;
-    images: ProjectImage[];
-}
-
-// Simulated database mapped by URL slug
-const projectDatabase: Record<string, ProjectCategory> = {
-    "packaging-designs": {
-        title: "Packaging Designs",
-        category: "Branding / Design",
-        description: "A comprehensive exploration of sustainable and premium packaging solutions for modern eco-conscious brands. Highlighting tactile materials and minimalist typography.",
-        images: [
-            { url: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&q=80&w=2000", span: "col-span-2" },
-            { url: "https://images.unsplash.com/photo-1558655146-d49348e9ae97?auto=format&fit=crop&q=80&w=2000", span: "col-span-1" },
-            { url: "https://images.unsplash.com/photo-1605204481358-fc29906666eb?auto=format&fit=crop&q=80&w=2000", span: "col-span-1" },
-            { url: "https://images.unsplash.com/photo-1533682944066-eebbf906d203?auto=format&fit=crop&q=80&w=2000", span: "col-span-2" }
-        ]
-    },
-    "fintech-dashboard": {
-        title: "Fintech Dashboard",
-        category: "Next.js / Tailwind",
-        description: "A dark-mode financial analytics dashboard designed for institutional traders, featuring real-time data visualization and complex component architecture.",
-        images: [
-            { url: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2000", span: "col-span-2" },
-            { url: "https://images.unsplash.com/photo-1555421689-491a97ff2040?auto=format&fit=crop&q=80&w=2000", span: "col-span-1" },
-            { url: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2000", span: "col-span-1" }
-        ]
-    },
-    // Fallbacks for other routes
-    "award-winning-portfolio": {
-        title: "Award Winning Portfolio",
-        category: "Framer Motion",
-        description: "The architecture behind an Awwwards-winning digital portfolio focusing on scrollytelling and micro-interactions.",
-        images: [
-            { url: "https://images.unsplash.com/photo-1542382257-80dedb725088?auto=format&fit=crop&q=80&w=2000", span: "col-span-2" },
-            { url: "https://images.unsplash.com/photo-1507238692062-75ca28b488f5?auto=format&fit=crop&q=80&w=2000", span: "col-span-2" }
-        ]
-    },
-    "interactive-campaign": {
-        title: "Interactive Campaign",
-        category: "Three.js",
-        description: "A WebGL rich experience created for a luxury automotive brand, featuring 3D product configurators.",
-        images: [
-            { url: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=2000", span: "col-span-2" }
-        ]
-    }
-};
-
-export default function ProjectDynamicPage({ params }: { params: { slug: string } }) {
+export default function CategoryDynamicPage({ params }: { params: { slug: string } }) {
     const data = projectDatabase[params.slug];
 
     // Trigger Next.js 404 page if a random slug is entered
@@ -90,12 +35,12 @@ export default function ProjectDynamicPage({ params }: { params: { slug: string 
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M19 12H5M12 19l-7-7 7-7" />
                     </svg>
-                    All Works
+                    All Categories
                 </Link>
             </header>
 
-            {/* Project Header */}
-            <section className="relative min-h-[70vh] flex flex-col justify-end px-6 md:px-10 pb-24 pt-32 overflow-hidden max-w-7xl mx-auto w-full">
+            {/* Category Header */}
+            <section className="relative min-h-[60vh] flex flex-col justify-end px-6 md:px-10 pb-24 pt-32 overflow-hidden max-w-7xl mx-auto w-full">
                 <motion.div
                     style={{ y: yTitle, opacity: opacityTitle }}
                     className="relative z-10"
@@ -129,29 +74,45 @@ export default function ProjectDynamicPage({ params }: { params: { slug: string 
                 </motion.div>
             </section>
 
-            {/* Asymmetrical Gallery Grid */}
-            <section className="relative z-10 px-4 md:px-10 pb-48">
+            {/* Sub-Projects Thumbnail Grid */}
+            <section className="relative z-20 px-4 md:px-10 pb-32">
                 <div className="max-w-7xl mx-auto">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
-                        {data.images.map((img, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, y: 50 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, margin: "-100px" }}
-                                transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                                className={`relative rounded-xl md:rounded-3xl overflow-hidden bg-white/5 ${img.span || 'col-span-1'} ${img.span === 'col-span-2' ? 'aspect-[16/9]' : 'aspect-square'}`}
-                            >
-                                <Image
-                                    src={img.url}
-                                    alt={`${data.title} showcase image ${index + 1}`}
-                                    fill
-                                    unoptimized
-                                    className="object-cover"
-                                    sizes={img.span === 'col-span-2' ? "100vw" : "(max-width: 768px) 100vw, 50vw"}
-                                    priority={index === 0}
-                                />
-                            </motion.div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 space-y-6 md:space-y-0">
+                        {data.subProjects.map((project, index) => (
+                            <Link key={project.id} href={`/projects/${params.slug}/${project.id}`}>
+                                <motion.div
+                                    initial={{ opacity: 0, y: 50 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true, margin: "-100px" }}
+                                    transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                                    className="relative group cursor-pointer block h-full min-h-[400px]"
+                                >
+                                    <div className="relative rounded-2xl overflow-hidden bg-white/5 border border-white/10 w-full h-full aspect-[4/3]">
+                                        <Image
+                                            src={project.thumbnail}
+                                            alt={project.title}
+                                            fill
+                                            unoptimized
+                                            className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                                            sizes="(max-width: 768px) 100vw, 50vw"
+                                        />
+
+                                        {/* Overlay Hover Effect */}
+                                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out flex flex-col justify-end p-6 md:p-8">
+                                            <p className="text-white/70 text-sm font-semibold tracking-widest uppercase mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-100 ease-out">
+                                                View Project
+                                            </p>
+                                            <h3 className="text-white text-3xl font-bold tracking-tight transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-75 ease-out">
+                                                {project.title}
+                                            </h3>
+                                        </div>
+                                    </div>
+                                    <div className="mt-4 md:hidden">
+                                        <h3 className="text-white text-xl font-bold tracking-tight">{project.title}</h3>
+                                        <p className="text-white/60 text-sm mt-2 font-light">{project.description}</p>
+                                    </div>
+                                </motion.div>
+                            </Link>
                         ))}
                     </div>
                 </div>
