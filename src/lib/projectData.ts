@@ -56,11 +56,31 @@ export const projectDatabase: Record<string, ProjectCategory> = {
             {
                 id: "project-2",
                 title: "Project 2",
-                thumbnail: "https://images.unsplash.com/photo-1533682944066-eebbf906d203?auto=format&fit=crop&q=80&w=800",
+                thumbnail: "/images/projects/packaging/project2/1.jpg",
                 description: "Another beautiful packaging assignment focusing on eco-friendly paper sourcing and elegant typography.",
                 images: [
-                    { url: "https://images.unsplash.com/photo-1533682944066-eebbf906d203?auto=format&fit=crop&q=80&w=2000", span: "col-span-2" },
-                    { url: "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=2000", span: "col-span-2" }
+                    { url: "/images/projects/packaging/project2/1.jpg", span: "col-span-2" },
+                    { url: "/images/projects/packaging/project2/2.gif", span: "col-span-1" },
+                    { url: "/images/projects/packaging/project2/3.jpg", span: "col-span-1" },
+                    { url: "/images/projects/packaging/project2/4.jpg", span: "col-span-2" },
+                    { url: "/images/projects/packaging/project2/5.jpg", span: "col-span-1" },
+                    { url: "/images/projects/packaging/project2/6.jpg", span: "col-span-1" },
+                    { url: "/images/projects/packaging/project2/7.jpg", span: "col-span-1" },
+                    { url: "/images/projects/packaging/project2/8.jpg", span: "col-span-1" },
+                    { url: "/images/projects/packaging/project2/9.jpg", span: "col-span-2" },
+                    { url: "/images/projects/packaging/project2/10.gif", span: "col-span-1" },
+                    { url: "/images/projects/packaging/project2/11.jpg", span: "col-span-1" },
+                    { url: "/images/projects/packaging/project2/12.jpg", span: "col-span-1" },
+                    { url: "/images/projects/packaging/project2/13.gif", span: "col-span-1" },
+                    { url: "/images/projects/packaging/project2/14.jpg", span: "col-span-2" },
+                    { url: "/images/projects/packaging/project2/15.jpg", span: "col-span-1" },
+                    { url: "/images/projects/packaging/project2/16.jpg", span: "col-span-1" },
+                    { url: "/images/projects/packaging/project2/17.jpg", span: "col-span-1" },
+                    { url: "/images/projects/packaging/project2/18.jpg", span: "col-span-1" },
+                    { url: "/images/projects/packaging/project2/19.gif", span: "col-span-2" },
+                    { url: "/images/projects/packaging/project2/19.jpg", span: "col-span-1" },
+                    { url: "/images/projects/packaging/project2/20.jpg", span: "col-span-1" },
+                    { url: "/images/projects/packaging/project2/21.jpg", span: "col-span-2" }
                 ]
             }
         ]
