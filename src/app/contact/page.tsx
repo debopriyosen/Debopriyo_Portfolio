@@ -30,7 +30,7 @@ export default function ContactPage() {
                     className="bg-white/5 border border-white/10 p-8 md:p-12 rounded-3xl backdrop-blur-md"
                 >
                     <h3 className="text-3xl font-semibold text-white mb-2">Debopriyo Sen</h3>
-                    <p className="text-gray-400 mb-8 max-w-2xl leading-relaxed">
+                    <p className="text-gray-400 mb-8 max-w-2xl leading-relaxed text-sm sm:text-base text-balance">
                         Product & Experience Designer | E-commerce Systems | UI/UX | Design Systems | AI-driven Workflows
                     </p>
 
@@ -38,7 +38,7 @@ export default function ContactPage() {
                         <p className="text-sm text-gray-500 uppercase tracking-widest mb-2 font-medium">Contact</p>
                         <a
                             href="mailto:debopriyosensupu@gmail.com"
-                            className="text-lg sm:text-2xl md:text-4xl font-medium text-white hover:text-gray-300 transition-colors break-all"
+                            className="text-base sm:text-2xl md:text-4xl font-medium text-white hover:text-gray-300 transition-colors break-all"
                         >
                             debopriyosensupu@gmail.com
                         </a>

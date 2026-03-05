@@ -23,12 +23,7 @@ export default function Navbar() {
             </Link>
 
             <div className="flex gap-8 md:gap-12">
-                <Link
-                    href="/"
-                    className="text-white/80 hover:text-white text-sm font-medium tracking-wide transition-colors"
-                >
-                    Home
-                </Link>
+
                 <Link
                     href="/#projects-section"
                     onClick={(e) => {
